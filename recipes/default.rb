@@ -19,6 +19,7 @@
 #
 
 include_recipe "apache2"
+include_recipe "mysql::ruby"
 include_recipe "mysql::server"
 include_recipe "php"
 include_recipe "php::module_mysql"
@@ -44,7 +45,7 @@ package 'unzip'
 
 bash "Extract joomla" do
   user 'root'
-  code "unzip #{Chef::Config[:file_cache_path]}/joomla.zip -d #{node['joomla']['dir']}"
+  code "unzip -o #{Chef::Config[:file_cache_path]}/joomla.zip -d #{node['joomla']['dir']}"
 end
 
 bash "Assign property of dir #{node['joomla']['dir']} to www-data user" do
